@@ -1,5 +1,99 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Shreyas' Homepage</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Webpage</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <script defer src="scripts/script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="modal-overlay" class="modal-overlay">
+        <img id="modal-pic" class="modal-pic" src="" alt="Profile Picture">
+    </div>
+    <div id="welcome-page" class="welcome-container">
+        <div class="welcome-content">
+            <h1 class="typing-text">Welcome to Shreyas' Page</h1>
+            <p>GitHub: <a href="https://github.com/Checha18" target="_blank" onclick="event.stopPropagation()">Checha-18</a></p>
+        </div>
+    </div>
+
+    <div id="main-content" style="display: none;">
+        <header>
+            <h1>Welcome to My Webpage!</h1>
+            <nav>
+                <a href="#about">About Me</a>
+                <a href="#education">Education</a>
+                <a href="#skills">Skills</a>
+                <a href="#cv">CV</a>
+                <a href="#social">Socials</a>
+            </nav>
+        </header>
+
+        <main>
+            <!-- About Me Section -->
+            <section id="about">
+                <h2>About Me</h2>
+                <p>Hello! I'm Shreyas, an aspiring computer science student with a passion for technology and innovation. When I'm not coding, I'm probably on the basketball court shooting some buckets. I also love music, dance, and other extra-curricular activities that keep the creative juices flowing. Building projects, participating in hackathons, and constantly exploring new tech challenges are my jam. I believe in the power of technology to create meaningful change, and I'm always excited to take on new adventures!</p>
+                <img src="profile.jpg" alt="Profile Picture" class="profile-pic" id="profile-pic">
+                <div class="photo-gallery">
+                    <h3>Photos from my birthplace</h3>
+                    <img src="photo1.jpg" alt="Local picture 1">
+                    <img src="photo2.jpg" alt="Local picture 2">
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section id="education">
+                <h2>Educational Journey</h2>
+                <ul>
+                    <li><strong>University:</strong> IIIT-Hyderabad Bachelor's + Master in Research in Computer Science and Engineering</li>
+                    <li><strong>High School:</strong> Graduated with distinction in Computer Science, Mathematics, Physics, and Chemistry, from Sri Kumaran Children's Home, Bangalore</li>
+                    <li><strong>Achievements:</strong>
+                        <ul>
+                            <li>Winners of the IIIT-Hyderabad Inter College Basketball Tournament</li>
+                            <li>Third Place, IIITH Megathon 2024</li>
+                            <li>Active member of Amateur Enthusiasts Sports Club (ASEC)</li>
+                            <li>Part of the College Basketball Team</li>
+                            <li>Represented Karnataka in Nationals in 2019 for Basketball</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills">
+                <h2>Technical Arsenal</h2>
+                <ul>
+                    <li class="skill-item"><strong>Web Development:</strong> HTML5, CSS3, JavaScript</li>
+                    <li class="skill-item"><strong>Programming:</strong> Python, C, C++</li>
+                    <li class="skill-item"><strong>Tools & Technologies:</strong> Git, VS Code</li>
+                    <li class="skill-item"><strong>Soft Skills:</strong> Problem Solving, Team Leadership, Good Work Ethic</li>
+                </ul>
+            </section>
+
+            <!-- CV Section -->
+            <section id="cv">
+                <h2>My CV</h2>
+                <p>Check out my full CV here: <a href="cv.pdf" download>Download CV</a></p>
+            </section>
+
+            <!-- Social Links -->
+            <section id="social">
+                <h2>Socials</h2>
+                <div class="social-links">
+                    <a href="https://github.com/Checha18" class="social-icon"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/shreyas-ramasubramanian-92a664313/" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/chechaaa09?igsh=a3JqdzJrb2FsMzNp" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto: chechashreyas@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Shreyas | Crafted with 💻 and ❤️ | Computer Science @IIITH</p>
+        </footer>
+    </div>
+</body>
 </html>
