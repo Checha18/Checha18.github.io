@@ -140,4 +140,243 @@ document.addEventListener('DOMContentLoaded', () => {
             item.style.transform = 'translateX(0)';
         });
     });
+    
+    // Text analyzer functionality
+    const analyzeBtn = document.getElementById('analyze-btn');
+    const loadSampleBtn = document.getElementById('load-sample');
+    
+    if (analyzeBtn) {
+        analyzeBtn.addEventListener('click', analyzeText);
+    }
+    
+    if (loadSampleBtn) {
+        loadSampleBtn.addEventListener('click', loadSampleText);
+    }
 });
+
+// Text analyzer functions
+function loadSampleText() {
+    fetch('https://www.gutenberg.org/files/1342/1342-0.txt') // Pride and Prejudice
+        .then(response => response.text())
+        .then(text => {
+            document.getElementById('text-input').value = text.slice(0, 50000); // Limit to prevent browser issues
+        })
+        .catch(error => {
+            console.error('Error loading sample text:', error);
+            document.getElementById('text-input').value = "It was a bright cold day in April, and the clocks were striking thirteen. Winston Smith, his chin nuzzled into his breast in an effort to escape the vile wind, slipped quickly through the glass doors of Victory Mansions, though not quickly enough to prevent a swirl of gritty dust from entering along with him...";
+        });
+}
+
+function analyzeText() {
+    const text = document.getElementById('text-input').value;
+    if (!text.trim()) {
+        alert('Please enter some text to analyze.');
+        return;
+    }
+    
+    const resultsContainer = document.getElementById('results-container');
+    resultsContainer.innerHTML = ''; // Clear previous results
+    
+    // Basic text statistics
+    displayBasicStats(text, resultsContainer);
+    
+    // Pronouns analysis
+    displayPronounsAnalysis(text, resultsContainer);
+    
+    // Prepositions analysis
+    displayPrepositionsAnalysis(text, resultsContainer);
+    
+    // Indefinite articles analysis
+    displayArticlesAnalysis(text, resultsContainer);
+}
+
+function displayBasicStats(text, container) {
+    const letters = (text.match(/[a-zA-Z]/g) || []).length;
+    const words = text.trim().split(/\s+/).length;
+    const spaces = (text.match(/\s/g) || []).length;
+    const newlines = (text.match(/\n/g) || []).length;
+    const specialSymbols = (text.match(/[^\w\s]/g) || []).length;
+    
+    const section = document.createElement('div');
+    section.className = 'results-section';
+    
+    section.innerHTML = `
+        <h3 class="results-title">Basic Text Statistics</h3>
+        <table>
+            <tr><td>Letters:</td><td>${letters}</td></tr>
+            <tr><td>Words:</td><td>${words}</td></tr>
+            <tr><td>Spaces:</td><td>${spaces}</td></tr>
+            <tr><td>Newlines:</td><td>${newlines}</td></tr>
+            <tr><td>Special Symbols:</td><td>${specialSymbols}</td></tr>
+        </table>
+    `;
+    
+    container.appendChild(section);
+}
+
+function displayPronounsAnalysis(text, container) {
+    // Define list of common English pronouns
+    const pronouns = [
+        'i', 'me', 'my', 'mine', 'myself',
+        'you', 'your', 'yours', 'yourself', 'yourselves',
+        'he', 'him', 'his', 'himself',
+        'she', 'her', 'hers', 'herself',
+        'it', 'its', 'itself',
+        'we', 'us', 'our', 'ours', 'ourselves',
+        'they', 'them', 'their', 'theirs', 'themselves',
+        'who', 'whom', 'whose', 'which', 'that'
+    ];
+    
+    // Use regex to find words (accounting for word boundaries)
+    const words = text.toLowerCase().match(/\b\w+\b/g) || [];
+    
+    // Count each pronoun
+    const pronounCounts = {};
+    pronouns.forEach(pronoun => {
+        pronounCounts[pronoun] = 0;
+    });
+    
+    words.forEach(word => {
+        if (pronouns.includes(word)) {
+            pronounCounts[word]++;
+        }
+    });
+    
+    // Filter to include only pronouns that appear in the text
+    const filteredPronounCounts = Object.entries(pronounCounts)
+        .filter(([_, count]) => count > 0)
+        .sort((a, b) => b[1] - a[1]); // Sort by count in descending order
+    
+    const section = document.createElement('div');
+    section.className = 'results-section';
+    
+    let tableContent = filteredPronounCounts.map(([pronoun, count]) => 
+        `<tr><td>${pronoun}</td><td>${count}</td></tr>`
+    ).join('');
+    
+    if (!tableContent) {
+        tableContent = '<tr><td colspan="2">No pronouns found in the text.</td></tr>';
+    }
+    
+    section.innerHTML = `
+        <h3 class="results-title">Pronoun Analysis</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Pronoun</th>
+                    <th>Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${tableContent}
+            </tbody>
+        </table>
+    `;
+    
+    container.appendChild(section);
+}
+
+function displayPrepositionsAnalysis(text, container) {
+    // Define list of common English prepositions
+    const prepositions = [
+        'about', 'above', 'across', 'after', 'against', 'along', 'amid', 'among',
+        'around', 'at', 'before', 'behind', 'below', 'beneath', 'beside', 'besides',
+        'between', 'beyond', 'by', 'concerning', 'despite', 'down', 'during',
+        'except', 'for', 'from', 'in', 'inside', 'into', 'like', 'near', 'of',
+        'off', 'on', 'onto', 'out', 'outside', 'over', 'past', 'regarding',
+        'round', 'since', 'through', 'throughout', 'to', 'toward', 'towards',
+        'under', 'underneath', 'until', 'unto', 'up', 'upon', 'with', 'within', 'without'
+    ];
+    
+    // Use regex to find words (accounting for word boundaries)
+    const words = text.toLowerCase().match(/\b\w+\b/g) || [];
+    
+    // Count each preposition
+    const prepositionCounts = {};
+    prepositions.forEach(preposition => {
+        prepositionCounts[preposition] = 0;
+    });
+    
+    words.forEach(word => {
+        if (prepositions.includes(word)) {
+            prepositionCounts[word]++;
+        }
+    });
+    
+    // Filter to include only prepositions that appear in the text
+    const filteredPrepositionCounts = Object.entries(prepositionCounts)
+        .filter(([_, count]) => count > 0)
+        .sort((a, b) => b[1] - a[1]); // Sort by count in descending order
+    
+    const section = document.createElement('div');
+    section.className = 'results-section';
+    
+    let tableContent = filteredPrepositionCounts.map(([preposition, count]) => 
+        `<tr><td>${preposition}</td><td>${count}</td></tr>`
+    ).join('');
+    
+    if (!tableContent) {
+        tableContent = '<tr><td colspan="2">No prepositions found in the text.</td></tr>';
+    }
+    
+    section.innerHTML = `
+        <h3 class="results-title">Preposition Analysis</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Preposition</th>
+                    <th>Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${tableContent}
+            </tbody>
+        </table>
+    `;
+    
+    container.appendChild(section);
+}
+
+function displayArticlesAnalysis(text, container) {
+    // Define indefinite articles
+    const articles = ['a', 'an'];
+    
+    // Use regex to find words (accounting for word boundaries)
+    const words = text.toLowerCase().match(/\b\w+\b/g) || [];
+    
+    // Count each article
+    const articleCounts = {
+        'a': 0,
+        'an': 0
+    };
+    
+    words.forEach(word => {
+        if (articles.includes(word)) {
+            articleCounts[word]++;
+        }
+    });
+    
+    const section = document.createElement('div');
+    section.className = 'results-section';
+    
+    const tableContent = Object.entries(articleCounts)
+        .map(([article, count]) => `<tr><td>${article}</td><td>${count}</td></tr>`)
+        .join('');
+    
+    section.innerHTML = `
+        <h3 class="results-title">Indefinite Article Analysis</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Article</th>
+                    <th>Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${tableContent}
+            </tbody>
+        </table>
+    `;
+    
+    container.appendChild(section);
+}

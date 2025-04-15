@@ -677,3 +677,99 @@ body.alt .theme-toggle i {
 .modal-pic.active {
     transform: translate(-50%, -50%) scale(1);
 }
+
+/* Text Analyzer Styles */
+.text-analyzer-section {
+    margin: 40px 0;
+    padding: 20px;
+    background-color: var(--section-bg);
+    border-radius: 10px;
+    box-shadow: 0 0 15px var(--shadow-color);
+}
+
+.text-input {
+    width: 100%;
+    height: 250px;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--nav-border-color);
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.sample-btn {
+    margin-bottom: 20px;
+    padding: 8px 15px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid var(--nav-border-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sample-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--header-text);
+    transform: translateY(-2px);
+}
+
+.analyze-btn {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: var(--header-text);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.analyze-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 8px var(--shadow-color);
+}
+
+.results-container {
+    margin-top: 30px;
+}
+
+.results-section {
+    margin-bottom: 30px;
+    border: 1px solid var(--nav-border-color);
+    border-radius: 8px;
+    padding: 15px;
+    background-color: var(--section-bg);
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+.results-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--nav-border-color);
+    padding-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.results-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.results-section th, .results-section td {
+    border: 1px solid var(--nav-border-color);
+    padding: 8px;
+    text-align: left;
+}
+
+.results-section th {
+    background-color: var(--primary-color);
+    color: var(--header-text);
+}
