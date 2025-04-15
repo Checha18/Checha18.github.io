@@ -7,15 +7,21 @@
     <link rel="stylesheet" href="styles/styles.css">
     <script defer src="scripts/script.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="modal-overlay" class="modal-overlay">
-        <img id="modal-pic" class="modal-pic" src="" alt="Profile Picture">
+        <img id="modal-pic" class="modal-pic" src="media/profile.jpg" alt="Profile Picture">
     </div>
     <div id="welcome-page" class="welcome-container">
         <div class="welcome-content">
-            <h1 class="typing-text">Welcome to Shreyas' Page</h1>
-            <p>GitHub: <a href="https://github.com/Checha18" target="_blank" onclick="event.stopPropagation()">Checha-18</a></p>
+            <h1 class="typing-text">Welcome to My World</h1>
+            <p class="typing-text-delayed">Hey there! I'm Shreyas</p>
+            <p><a href="https://github.com/Checha18" target="_blank" onclick="event.stopPropagation()">
+                <i class="fab fa-github"></i> Checha-18
+            </a></p>
         </div>
     </div>
 
@@ -24,10 +30,14 @@
             <h1>Welcome to My Webpage!</h1>
             <nav>
                 <a href="#about">About Me</a>
+                <a href="#gallery">Gallery</a>
                 <a href="#education">Education</a>
                 <a href="#skills">Skills</a>
                 <a href="#cv">CV</a>
                 <a href="#social">Socials</a>
+                <button id="theme-toggle" class="theme-toggle">
+                    <i class="fas fa-sun"></i>
+                </button>
             </nav>
         </header>
 
@@ -36,11 +46,16 @@
             <section id="about">
                 <h2>About Me</h2>
                 <p>Hello! I'm Shreyas, an aspiring computer science student with a passion for technology and innovation. When I'm not coding, I'm probably on the basketball court shooting some buckets. I also love music, dance, and other extra-curricular activities that keep the creative juices flowing. Building projects, participating in hackathons, and constantly exploring new tech challenges are my jam. I believe in the power of technology to create meaningful change, and I'm always excited to take on new adventures!</p>
-                <img src="profile.jpg" alt="Profile Picture" class="profile-pic" id="profile-pic">
+                <img src="media/profile.jpg" alt="Profile Picture" class="profile-pic" id="profile-pic">
+            </section>
+
+            <!-- Photo Gallery Section -->
+            <section id="gallery">
+                <h2>Photo Gallery</h2>
+                <p>Some snapshots from my birthplace and adventures.</p>
                 <div class="photo-gallery">
-                    <h3>Photos from my birthplace</h3>
-                    <img src="photo1.jpg" alt="Local picture 1">
-                    <img src="photo2.jpg" alt="Local picture 2">
+                    <img src="media/image1.jpg" alt="Local picture 1">
+                    <img src="media/image2.jpg" alt="Local picture 2">
                 </div>
             </section>
 
